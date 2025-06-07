@@ -1,0 +1,147 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    // 🎯 Basic Configuration
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    
+    // 🔧 Module System
+    "allowJs": true,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+    
+    // ⚛️ JSX Configuration for React
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxFactory": "React.createElement",
+    "jsxFragmentFactory": "React.Fragment",
+    
+    // 🎯 Type Checking
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    
+    // 🔍 Additional Checks
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
+    
+    // 📁 Path Resolution
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@data/*": ["./src/data/*"],
+      "@utils/*": ["./src/scripts/*"],
+      "@types/*": ["./src/types/*"],
+      "@ui/*": ["./src/components/ui/*"],
+      "@sections/*": ["./src/components/sections/*"],
+      "@interactive/*": ["./src/components/interactive/*"],
+      "@jungian/*": ["./src/components/jungian/*"],
+      "@cultural/*": ["./src/components/cultural/*"],
+      "@forms/*": ["./src/components/forms/*"],
+      "@portfolio/*": ["./src/components/portfolio/*"]
+    },
+    
+    // 🚀 Output Configuration
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "removeComments": true,
+    "sourceMap": true,
+    "declaration": false,
+    "declarationMap": false,
+    
+    // 🔧 Advanced Options
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": false,
+    "noEmit": true,
+    
+    // 🎨 Experimental Features
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    
+    // 📊 Type Acquisition
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "types": [
+      "node",
+      "astro/client",
+      "vite/client"
+    ]
+  },
+  
+  // 📁 Include Patterns
+  "include": [
+    "src/**/*",
+    "src/**/*.astro",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.vue",
+    "src/**/*.svelte",
+    "src/**/*.md",
+    "src/**/*.mdx",
+    "astro.config.mjs",
+    "tailwind.config.mjs",
+    "vite.config.ts",
+    ".astro/types.d.ts"
+  ],
+  
+  // 🚫 Exclude Patterns
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".astro",
+    ".vercel",
+    ".netlify",
+    "public",
+    "coverage",
+    "cypress",
+    "playwright",
+    "tests",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.stories.ts",
+    "**/*.stories.tsx"
+  ],
+  
+  // 🎯 TypeScript-specific Astro configuration
+  "astro": {
+    "allowJs": true
+  },
+  
+  // 🔧 Compiler Options for Development
+  "ts-node": {
+    "esm": true,
+    "compilerOptions": {
+      "module": "ESNext",
+      "moduleResolution": "bundler"
+    }
+  }
+}
