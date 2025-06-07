@@ -1,0 +1,387 @@
+---
+// 🎭 Enhanced Button Component - Alchemical Interface Elements
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'alchemy' | 'mirror' | 'flow' | 'sage' | 'luna';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  icon?: string;
+  external?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  class?: string;
+  'data-tooltip'?: string;
+}
+
+const {
+  href,
+  type = 'button',
+  variant = 'primary',
+  size = 'md',
+  icon,
+  external = false,
+  disabled = false,
+  loading = false,
+  class: additionalClasses = '',
+  'data-tooltip': tooltip,
+  ...rest
+} = Astro.props;
+
+// 🎨 Base classes with enhanced styling
+const baseClass = `
+  inline-flex items-center justify-center font-semibold rounded-2xl 
+  transition-all duration-300 ease-out
+  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent
+  disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+  relative overflow-hidden group
+  border border-transparent
+  transform-gpu
+`.replace(/\s+/g, ' ').trim();
+
+// 🎭 Enhanced variant classes with glassmorphism
+const variantClasses = {
+  // 🌟 Primary - Mirror theme
+  primary: `
+    bg-gradient-to-r from-mirror-500 to-mirror-600 
+    text-white shadow-lg shadow-mirror-500/25
+    hover:from-mirror-600 hover:to-mirror-700 hover:shadow-xl hover:shadow-mirror-500/30
+    hover:scale-105 hover:-translate-y-0.5
+    focus:ring-mirror-400
+    active:scale-95
+  `,
+  
+  // 🌙 Secondary - Luna theme
+  secondary: `
+    bg-gradient-to-r from-luna-800 to-luna-900 
+    text-luna-50 shadow-lg shadow-luna-900/25
+    hover:from-luna-700 hover:to-luna-800 hover:shadow-xl hover:shadow-luna-900/30
+    hover:scale-105 hover:-translate-y-0.5
+    focus:ring-luna-400
+    active:scale-95
+    dark:from-luna-100 dark:to-luna-200 dark:text-luna-900
+    dark:hover:from-luna-50 dark:hover:to-luna-100
+  `,
+  
+  // 👻 Ghost - Transparent with hover
+  ghost: `
+    bg-transparent text-luna-700 border-luna-200
+    hover:bg-luna-100 hover:border-luna-300 hover:text-luna-900
+    hover:scale-105 hover:-translate-y-0.5
+    focus:ring-luna-300
+    active:scale-95
+    dark:text-luna-300 dark:border-luna-700
+    dark:hover:bg-luna-800 dark:hover:border-luna-600 dark:hover:text-luna-100
+  `,
+  
+  // 🔮 Alchemy - Gold/amber theme
+  alchemy: `
+    bg-gradient-to-r from-alchemy-500 to-alchemy-600 
+    text-white shadow-lg shadow-alchemy-500/25
+    hover:from-alchemy-600 hover:to-alchemy-700 hover:shadow-xl hover:shadow-alchemy-500/30
+    hover:scale-105 hover:-translate-y-0.5
+    focus:ring-alchemy-400
+    active:scale-95
+  `,
+  
+  // 🪞 Mirror - Purple/violet theme
+  mirror: `
+    bg-gradient-to-r from-mirror-500 to-mirror-600 
+    text-white shadow-lg shadow-mirror-500/25
+    hover:from-mirror-600 hover:to-mirror-700 hover:shadow-xl hover:shadow-mirror-500/30
+    hover:scale-105 hover:-translate-y-0.5
+    focus:ring-mirror-400
+    active:scale-95
+  `,
+  
+  // 🌊 Flow - Blue/cyan theme
+  flow: `
+    bg-gradient-to-r from-flow-500 to-flow-600 
+    text-white shadow-lg shadow-flow-500/25
+    hover:from-flow-600 hover:to-flow-700 hover:shadow-xl hover:shadow-flow-500/30
+    hover:scale-105 hover:-translate-y-0.5
+    focus:ring-flow-400
+    active:scale-95
+  `,
+  
+  // 🌿 Sage - Green/emerald theme
+  sage: `
+    bg-gradient-to-r from-sage-500 to-sage-600 
+    text-white shadow-lg shadow-sage-500/25
+    hover:from-sage-600 hover:to-sage-700 hover:shadow-xl hover:shadow-sage-500/30
+    hover:scale-105 hover:-translate-y-0.5
+    focus:ring-sage-400
+    active:scale-95
+  `,
+  
+  // 🌙 Luna - Neutral theme
+  luna: `
+    bg-gradient-to-r from-luna-600 to-luna-700 
+    text-white shadow-lg shadow-luna-600/25
+    hover:from-luna-700 hover:to-luna-800 hover:shadow-xl hover:shadow-luna-600/30
+    hover:scale-105 hover:-translate-y-0.5
+    focus:ring-luna-400
+    active:scale-95
+  `,
+};
+
+// 📏 Enhanced size classes
+const sizeClasses = {
+  sm: 'px-3 py-1.5 text-sm min-h-[2rem] gap-1.5',
+  md: 'px-4 py-2 text-base min-h-[2.5rem] gap-2',
+  lg: 'px-6 py-3 text-lg min-h-[3rem] gap-2.5',
+  xl: 'px-8 py-4 text-xl min-h-[3.5rem] gap-3',
+};
+
+// 🎯 Combine all classes
+const buttonClasses = [
+  baseClass,
+  variantClasses[variant],
+  sizeClasses[size],
+  additionalClasses,
+  loading && 'pointer-events-none',
+  disabled && 'pointer-events-none opacity-50'
+].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+
+// 🔗 Link attributes
+const linkAttributes = href ? {
+  href,
+  target: external ? '_blank' : '_self',
+  rel: external ? 'noopener noreferrer' : undefined,
+} : {};
+
+// 🎭 Button attributes
+const buttonAttributes = !href ? {
+  type,
+  disabled: disabled || loading,
+} : {};
+
+// 📊 Icon size based on button size
+const iconSizes = {
+  sm: 'w-4 h-4',
+  md: 'w-5 h-5',
+  lg: 'w-6 h-6',
+  xl: 'w-7 h-7',
+};
+---
+
+<!-- 🎭 Render as link or button -->
+{href ? (
+  <a
+    class={buttonClasses}
+    data-tooltip={tooltip}
+    {...linkAttributes}
+    {...rest}
+  >
+    <!-- ✨ Shimmer effect overlay -->
+    <div class="absolute inset-0 -top-px overflow-hidden rounded-2xl">
+      <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+    </div>
+    
+    <!-- 🎨 Content -->
+    <span class="relative z-10 flex items-center justify-center gap-2">
+      {loading && (
+        <svg class={`${iconSizes[size]} animate-spin`} fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      )}
+      
+      {icon && !loading && (
+        <svg class={`${iconSizes[size]} flex-shrink-0`} aria-hidden="true">
+          <use href={icon} />
+        </svg>
+      )}
+      
+      <span class={loading ? 'opacity-70' : ''}>
+        <slot />
+      </span>
+    </span>
+  </a>
+) : (
+  <button
+    class={buttonClasses}
+    data-tooltip={tooltip}
+    {...buttonAttributes}
+    {...rest}
+  >
+    <!-- ✨ Shimmer effect overlay -->
+    <div class="absolute inset-0 -top-px overflow-hidden rounded-2xl">
+      <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+    </div>
+    
+    <!-- 🎨 Content -->
+    <span class="relative z-10 flex items-center justify-center gap-2">
+      {loading && (
+        <svg class={`${iconSizes[size]} animate-spin`} fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      )}
+      
+      {icon && !loading && (
+        <svg class={`${iconSizes[size]} flex-shrink-0`} aria-hidden="true">
+          <use href={icon} />
+        </svg>
+      )}
+      
+      <span class={loading ? 'opacity-70' : ''}>
+        <slot />
+      </span>
+    </span>
+  </button>
+)}
+
+<style>
+  /* 🎭 Enhanced button animations */
+  button, a {
+    position: relative;
+    will-change: transform;
+  }
+  
+  /* 🌟 Pulse effect for primary actions */
+  button[data-variant="primary"]:not(:disabled):not([aria-disabled="true"]),
+  a[data-variant="primary"] {
+    animation: subtle-pulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes subtle-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+    }
+    50% { 
+      box-shadow: 0 0 0 8px rgba(168, 85, 247, 0);
+    }
+  }
+  
+  /* 🎯 Focus visible enhancement */
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  
+  /* 📱 Mobile touch optimization */
+  @media (hover: none) and (pointer: coarse) {
+    button, a {
+      transform: none !important;
+    }
+    
+    button:active, a:active {
+      transform: scale(0.95) !important;
+    }
+  }
+  
+  /* ♿ Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    button, a {
+      transition: none !important;
+      animation: none !important;
+      transform: none !important;
+    }
+    
+    .group-hover\:translate-x-full {
+      transform: none !important;
+    }
+  }
+  
+  /* 🌙 Dark mode enhancements */
+  @media (prefers-color-scheme: dark) {
+    button, a {
+      backdrop-filter: blur(8px);
+    }
+  }
+</style>
+
+<!-- 🎭 Enhanced JavaScript for interactions -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 🎯 Enhanced button interactions
+    const buttons = document.querySelectorAll('button, a[role="button"]');
+    
+    buttons.forEach(button => {
+      // 🌟 Ripple effect on click
+      button.addEventListener('click', function(e) {
+        if (this.disabled || this.getAttribute('aria-disabled') === 'true') return;
+        
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size}px;
+          left: ${x}px;
+          top: ${y}px;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          transform: scale(0);
+          animation: ripple 0.6s ease-out;
+          pointer-events: none;
+          z-index: 0;
+        `;
+        
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+      
+      // 🎭 Tooltip functionality
+      const tooltip = button.getAttribute('data-tooltip');
+      if (tooltip) {
+        let tooltipEl = null;
+        
+        button.addEventListener('mouseenter', () => {
+          tooltipEl = document.createElement('div');
+          tooltipEl.textContent = tooltip;
+          tooltipEl.className = `
+            absolute z-50 px-3 py-2 text-sm font-medium text-white 
+            bg-luna-900 rounded-lg shadow-lg pointer-events-none
+            -top-12 left-1/2 transform -translate-x-1/2
+            opacity-0 transition-opacity duration-200
+            before:content-[''] before:absolute before:top-full before:left-1/2 
+            before:transform before:-translate-x-1/2 before:border-4 
+            before:border-transparent before:border-t-luna-900
+          `.replace(/\s+/g, ' ').trim();
+          
+          button.style.position = 'relative';
+          button.appendChild(tooltipEl);
+          
+          // Fade in
+          setTimeout(() => {
+            if (tooltipEl) tooltipEl.style.opacity = '1';
+          }, 10);
+        });
+        
+        button.addEventListener('mouseleave', () => {
+          if (tooltipEl) {
+            tooltipEl.style.opacity = '0';
+            setTimeout(() => {
+              if (tooltipEl && tooltipEl.parentNode) {
+                tooltipEl.remove();
+              }
+            }, 200);
+          }
+        });
+      }
+    });
+    
+    // 🎨 Add ripple animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  });
+</script>
