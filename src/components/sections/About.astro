@@ -1,0 +1,453 @@
+---
+// 🪞 About Section - The Mirror of Self-Discovery (Enhanced)
+import Button from '@ui/Button.astro';
+---
+
+<section id="about" class="relative py-20 overflow-hidden">
+  <!-- 🌌 Subtle Background Pattern (works with Stars) -->
+  <div class="absolute inset-0 opacity-30 pointer-events-none">
+    <div class="absolute inset-0 bg-gradient-to-br from-mirror-50/20 via-transparent to-alchemy-50/20 dark:from-mirror-900/10 dark:via-transparent dark:to-alchemy-900/10"></div>
+  </div>
+
+  <div class="container-lg relative z-10">
+    <!-- 🎯 Enhanced Section Header -->
+    <div class="text-center mb-20" id="about-header">
+      <div class="inline-block mb-6">
+        <div class="glass-mirror px-6 py-3 rounded-full mb-4">
+          <span class="text-sm font-semibold text-mirror-600 dark:text-mirror-400 tracking-wider uppercase">
+            🪞 Self-Discovery
+          </span>
+        </div>
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
+        <span class="text-gradient-mirror">The Mirror</span> 
+        <span class="text-luna-800 dark:text-luna-200">Reflects</span>
+      </h2>
+      
+      <p class="text-xl md:text-2xl text-luna-600 dark:text-luna-300 max-w-3xl mx-auto leading-relaxed">
+        A journey of <em class="text-alchemy-600 dark:text-alchemy-400">individuation</em> through the lens of Jungian psychology, 
+        bridging Thai heritage with Western innovation.
+      </p>
+    </div>
+    
+    <!-- 🎭 Enhanced Content Grid -->
+    <div class="grid lg:grid-cols-2 gap-16 items-center mb-20" id="about-content">
+      <!-- 📝 Story Content with Enhanced Glass -->
+      <div class="space-y-8" id="story-content">
+        <div class="glass-mirror p-8 rounded-3xl">
+          <h3 class="text-2xl md:text-3xl font-heading font-semibold text-luna-800 dark:text-luna-200 mb-6">
+            <span class="text-gradient-alchemy">The Journey of</span> Individuation
+          </h3>
+          
+          <div class="space-y-6 text-luna-600 dark:text-luna-300 leading-relaxed">
+            <p class="text-lg">
+              Born in <strong class="text-alchemy-600 dark:text-alchemy-400">Thailand</strong>, 
+              educated in <strong class="text-flow-600 dark:text-flow-400">Britain</strong>, 
+              I exist in the liminal space between cultures—a living bridge where ancient wisdom meets modern innovation.
+            </p>
+            
+            <div class="glass-alchemy p-6 rounded-2xl">
+              <p class="text-base">
+                My work explores the Jungian concept of 
+                <em class="text-alchemy-700 dark:text-alchemy-300 font-semibold">individuation</em>—
+                the process of integrating conscious and unconscious aspects of the psyche to become whole.
+              </p>
+            </div>
+            
+            <p class="text-lg">
+              Through <span class="text-mirror-600 dark:text-mirror-400 font-semibold">fashion design</span>, 
+              <span class="text-flow-600 dark:text-flow-400 font-semibold">AI development</span>, and 
+              <span class="text-sage-600 dark:text-sage-400 font-semibold">voice acting</span>, 
+              I manifest different <strong class="text-mirror-600 dark:text-mirror-400">archetypes</strong> of the creative self.
+            </p>
+          </div>
+        </div>
+        
+        <!-- 🌟 Enhanced Skills/Qualities -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="glass-luna p-4 rounded-xl text-center">
+            <div class="text-2xl mb-2">🌏</div>
+            <span class="text-sm font-semibold text-luna-700 dark:text-luna-300">Cultural Bridge</span>
+          </div>
+          <div class="glass-alchemy p-4 rounded-xl text-center">
+            <div class="text-2xl mb-2">🔮</div>
+            <span class="text-sm font-semibold text-alchemy-700 dark:text-alchemy-300">Depth Psychology</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+          <Button variant="mirror" size="lg" href="/about" class="group">
+            <span class="flex items-center gap-2">
+              🔍 <span>Explore My Full Story</span>
+            </span>
+          </Button>
+          <Button variant="ghost" size="lg" href="#contact" class="group">
+            <span class="flex items-center gap-2">
+              💬 <span>Let's Connect</span>
+            </span>
+          </Button>
+        </div>
+      </div>
+      
+      <!-- 🎭 Enhanced Archetype Visualization -->
+      <div class="relative" id="archetype-grid">
+        <div class="aspect-square bg-gradient-to-br from-mirror-100/50 to-alchemy-100/50 dark:from-mirror-900/30 dark:to-alchemy-900/30 rounded-3xl p-8 glass-mirror">
+          <!-- 🌟 Central Mandala -->
+          <div class="relative h-full">
+            <!-- 🎭 Archetype Cards with Enhanced Interactions -->
+            <div class="grid grid-cols-2 gap-6 h-full">
+              <!-- 🎨 Creator Archetype -->
+              <div class="archetype-card flex flex-col items-center justify-center text-center p-6 glass-alchemy rounded-2xl cursor-pointer group" 
+                   data-archetype="creator">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🎨</div>
+                <span class="text-base font-bold text-alchemy-700 dark:text-alchemy-300 mb-2">Creator</span>
+                <span class="text-xs text-alchemy-600 dark:text-alchemy-400 opacity-80">Fashion & Design</span>
+              </div>
+              
+              <!-- 🧠 Sage Archetype -->
+              <div class="archetype-card flex flex-col items-center justify-center text-center p-6 glass-mirror rounded-2xl cursor-pointer group" 
+                   data-archetype="sage">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🧠</div>
+                <span class="text-base font-bold text-mirror-700 dark:text-mirror-300 mb-2">Sage</span>
+                <span class="text-xs text-mirror-600 dark:text-mirror-400 opacity-80">AI & Technology</span>
+              </div>
+              
+              <!-- 🪄 Magician Archetype -->
+              <div class="archetype-card flex flex-col items-center justify-center text-center p-6 glass-luna rounded-2xl cursor-pointer group" 
+                   data-archetype="magician">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🪄</div>
+                <span class="text-base font-bold text-luna-700 dark:text-luna-300 mb-2">Magician</span>
+                <span class="text-xs text-luna-600 dark:text-luna-400 opacity-80">Voice & Performance</span>
+              </div>
+              
+              <!-- 🌍 Explorer Archetype -->
+              <div class="archetype-card flex flex-col items-center justify-center text-center p-6 glass-flow rounded-2xl cursor-pointer group" 
+                   data-archetype="explorer">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🌍</div>
+                <span class="text-base font-bold text-flow-700 dark:text-flow-300 mb-2">Explorer</span>
+                <span class="text-xs text-flow-600 dark:text-flow-400 opacity-80">Cultural Bridge</span>
+              </div>
+            </div>
+            
+            <!-- ✨ Central Mandala Symbol -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 glass-sage rounded-full flex items-center justify-center">
+              <div class="text-2xl animate-pulse">⚡</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 🌟 Floating Elements -->
+        <div class="absolute -top-4 -right-4 w-8 h-8 bg-alchemy-400 rounded-full opacity-60 animate-float"></div>
+        <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-mirror-400 rounded-full opacity-40 animate-float" style="animation-delay: 1s;"></div>
+      </div>
+    </div>
+    
+    <!-- 🌟 Enhanced Philosophy Quote Section -->
+    <div class="text-center mb-16" id="philosophy-quote">
+      <div class="glass-mirror p-12 rounded-3xl max-w-5xl mx-auto">
+        <div class="mb-8">
+          <svg class="w-12 h-12 text-alchemy-400 mx-auto mb-6 opacity-60" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+          </svg>
+        </div>
+        
+        <blockquote class="text-2xl md:text-3xl lg:text-4xl font-heading italic text-luna-700 dark:text-luna-300 mb-6 leading-relaxed">
+          "The privilege of a lifetime is to become who you truly are."
+        </blockquote>
+        
+        <cite class="text-lg md:text-xl text-alchemy-600 dark:text-alchemy-400 font-semibold">
+          — Carl Jung
+        </cite>
+        
+        <div class="mt-8 pt-8 border-t border-luna-200 dark:border-luna-700">
+          <p class="text-base text-luna-600 dark:text-luna-400 max-w-2xl mx-auto">
+            This philosophy guides my approach to design, technology, and life—
+            embracing both shadow and light in the journey toward wholeness.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 🔮 Jungian Concepts Mini-Grid -->
+    <div class="grid md:grid-cols-3 gap-8" id="jungian-concepts">
+      <!-- 🌑 Shadow Work -->
+      <div class="glass-luna p-6 rounded-2xl text-center group hover:scale-105 transition-transform duration-300">
+        <div class="text-3xl mb-4">🌑</div>
+        <h4 class="text-lg font-bold text-luna-700 dark:text-luna-300 mb-3">Shadow Integration</h4>
+        <p class="text-sm text-luna-600 dark:text-luna-400">
+          Embracing the rejected aspects of self to achieve psychological wholeness.
+        </p>
+      </div>
+      
+      <!-- 🎭 Persona -->
+      <div class="glass-alchemy p-6 rounded-2xl text-center group hover:scale-105 transition-transform duration-300">
+        <div class="text-3xl mb-4">🎭</div>
+        <h4 class="text-lg font-bold text-alchemy-700 dark:text-alchemy-300 mb-3">Persona Development</h4>
+        <p class="text-sm text-alchemy-600 dark:text-alchemy-400">
+          Crafting authentic masks that serve while staying true to the inner self.
+        </p>
+      </div>
+      
+      <!-- ⚖️ Anima/Animus -->
+      <div class="glass-mirror p-6 rounded-2xl text-center group hover:scale-105 transition-transform duration-300">
+        <div class="text-3xl mb-4">⚖️</div>
+        <h4 class="text-lg font-bold text-mirror-700 dark:text-mirror-300 mb-3">Anima/Animus</h4>
+        <p class="text-sm text-mirror-600 dark:text-mirror-400">
+          Balancing masculine and feminine energies within the creative process.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎭 Archetype Tooltip -->
+  <div id="archetype-tooltip" class="fixed pointer-events-none z-50 px-4 py-3 bg-luna-900 dark:bg-luna-100 text-luna-100 dark:text-luna-900 text-sm rounded-lg shadow-xl opacity-0 transition-opacity duration-200 max-w-xs">
+    <div class="tooltip-content font-medium"></div>
+    <div class="tooltip-description text-xs opacity-80 mt-1"></div>
+  </div>
+</section>
+
+<!-- 🎭 Enhanced GSAP Animations -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined') {
+      // 🎯 About Section Animation Timeline
+      const aboutTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      // 📝 Header Animation
+      aboutTl.fromTo("#about-header", {
+        y: 50,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out"
+      });
+
+      // 📖 Story Content Animation
+      aboutTl.fromTo("#story-content > *", {
+        x: -50,
+        opacity: 0
+      }, {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out"
+      }, "-=0.5");
+
+      // 🎭 Archetype Grid Animation
+      aboutTl.fromTo("#archetype-grid", {
+        x: 50,
+        opacity: 0,
+        scale: 0.9
+      }, {
+        x: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        ease: "back.out(1.7)"
+      }, "-=0.6");
+
+      // 🎨 Individual Archetype Cards
+      aboutTl.fromTo(".archetype-card", {
+        scale: 0,
+        rotation: 180
+      }, {
+        scale: 1,
+        rotation: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "back.out(1.7)"
+      }, "-=0.4");
+
+      // 💭 Philosophy Quote
+      aboutTl.fromTo("#philosophy-quote", {
+        y: 30,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.3");
+
+      // 🔮 Jungian Concepts
+      aboutTl.fromTo("#jungian-concepts > *", {
+        y: 40,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "power2.out"
+      }, "-=0.4");
+
+      // 🌟 Floating animations for archetype cards
+      gsap.to(".archetype-card", {
+        y: -5,
+        repeat: -1,
+        yoyo: true,
+        duration: 3,
+        stagger: 0.5,
+        ease: "sine.inOut"
+      });
+
+      // ⚡ Central mandala pulse
+      gsap.to("#archetype-grid .animate-pulse", {
+        scale: 1.2,
+        repeat: -1,
+        yoyo: true,
+        duration: 2,
+        ease: "sine.inOut"
+      });
+
+      // 🎭 Enhanced Archetype Interactions
+      const archetypeDescriptions = {
+        creator: {
+          title: "The Creator Archetype",
+          description: "Manifesting beauty and innovation through fashion design and visual storytelling."
+        },
+        sage: {
+          title: "The Sage Archetype", 
+          description: "Seeking truth and understanding through AI development and technological exploration."
+        },
+        magician: {
+          title: "The Magician Archetype",
+          description: "Transforming reality through voice acting and performance arts."
+        },
+        explorer: {
+          title: "The Explorer Archetype",
+          description: "Bridging cultures and discovering new frontiers of human experience."
+        }
+      };
+
+      document.querySelectorAll('.archetype-card').forEach(card => {
+        const tooltip = document.getElementById('archetype-tooltip');
+        const tooltipContent = tooltip.querySelector('.tooltip-content');
+        const tooltipDescription = tooltip.querySelector('.tooltip-description');
+        
+        card.addEventListener('mouseenter', (e) => {
+          const archetype = e.currentTarget.dataset.archetype;
+          const info = archetypeDescriptions[archetype];
+          
+          tooltipContent.textContent = info.title;
+          tooltipDescription.textContent = info.description;
+          tooltip.style.opacity = '1';
+          
+          // Enhanced hover animation
+          gsap.to(card, {
+            scale: 1.05,
+            y: -10,
+            duration: 0.3,
+            ease: "back.out(1.7)"
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          tooltip.style.opacity = '0';
+          
+          gsap.to(card, {
+            scale: 1,
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+
+        card.addEventListener('mousemove', (e) => {
+          tooltip.style.left = e.clientX + 15 + 'px';
+          tooltip.style.top = e.clientY - 60 + 'px';
+        });
+      });
+
+      // 🌟 Jungian concepts hover effects
+      document.querySelectorAll('#jungian-concepts .group').forEach(concept => {
+        concept.addEventListener('mouseenter', () => {
+          gsap.to(concept, {
+            y: -8,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+
+        concept.addEventListener('mouseleave', () => {
+          gsap.to(concept, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+      });
+    }
+  });
+</script>
+
+<style>
+  /* 🎨 Enhanced About Section Styles */
+  .archetype-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .archetype-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .archetype-card:hover::before {
+    left: 100%;
+  }
+
+  /* 🌟 Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(180deg); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* 📱 Responsive optimizations */
+  @media (max-width: 768px) {
+    .archetype-card {
+      padding: 1rem;
+    }
+    
+    .archetype-card .text-4xl {
+      font-size: 2rem;
+    }
+  }
+
+  /* ♿ Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .archetype-card,
+    .animate-float {
+      animation: none !important;
+    }
+  }
+
+  /* 🌙 Dark mode enhancements */
+  @media (prefers-color-scheme: dark) {
+    .archetype-card::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    }
+  }
+</style>
