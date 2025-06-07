@@ -1,0 +1,109 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer-container">
+  <div class="constellation-wrapper">
+    <!-- ✨ Symbolic Constellation SVG -->
+    <svg viewBox="0 0 800 600" class="constellation">
+      <circle cx="100" cy="150" r="3" />
+      <circle cx="200" cy="100" r="3" />
+      <circle cx="300" cy="180" r="3" />
+      <circle cx="400" cy="120" r="3" />
+      <circle cx="500" cy="200" r="3" />
+      <circle cx="600" cy="150" r="3" />
+      <line x1="100" y1="150" x2="200" y2="100" />
+      <line x1="200" y1="100" x2="300" y2="180" />
+      <line x1="300" y1="180" x2="400" y2="120" />
+      <line x1="400" y1="120" x2="500" y2="200" />
+      <line x1="500" y1="200" x2="600" y2="150" />
+    </svg>
+  </div>
+
+  <div class="footer-content">
+    <p>&copy; {currentYear} Thanatsitt Santisamranwilai. All rights reserved.</p>
+    <nav>
+      <a href="/legal">Legal</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .footer-container {
+    position: relative;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--color-luna-50);
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+    z-index: 10;
+  }
+
+  .footer-content p {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-content nav a {
+    margin: 0 0.75rem;
+    font-size: 0.85rem;
+    color: var(--color-luna-50);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-content nav a:hover {
+    color: var(--color-alchemy-500);
+  }
+
+  .constellation-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.4;
+    transform: translateY(-40px);
+  }
+
+  .constellation {
+    width: 100%;
+    height: auto;
+    stroke: var(--color-mirror-500);
+    stroke-width: 1;
+    fill: white;
+    animation: float 12s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    .footer-container {
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.85), transparent);
+      color: var(--color-luna-900);
+    }
+
+    .footer-content nav a {
+      color: var(--color-luna-900);
+    }
+
+    .footer-content nav a:hover {
+      color: var(--color-alchemy-500);
+    }
+
+    .constellation {
+      stroke: var(--color-alchemy-500);
+    }
+  }
+</style>
