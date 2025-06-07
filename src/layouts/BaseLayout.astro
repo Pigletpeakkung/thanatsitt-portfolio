@@ -1,17 +1,23 @@
 ---
-// 🌙 Base Layout - Enhanced for Alchemical Portfolio
+// 🌙 Base Layout - Enhanced for Alchemical Portfolio with Stars Integration
 export interface Props {
   title?: string;
   description?: string;
   image?: string;
   canonical?: string;
+  starsConfig?: {
+    intensity?: 'subtle' | 'normal' | 'cosmic';
+    nebulaColor?: 'purple' | 'alchemy' | 'mirror' | 'flow';
+    enabled?: boolean;
+  };
 }
 
 const {
   title = 'Mirror of Inner Alchemy | Thanatsitt Portfolio',
   description = 'Portfolio of Thanatsitt Santisamranwilai - Fusing design, code, and Jungian-inspired thought',
   image = '/images/og-image.jpg',
-  canonical = Astro.url.href
+  canonical = Astro.url.href,
+  starsConfig = { intensity: 'normal', nebulaColor: 'mirror', enabled: true }
 } = Astro.props;
 
 const siteTitle = 'Thanatsitt Portfolio';
@@ -136,15 +142,24 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         --font-heading: 'Playfair Display', Georgia, serif;
         --font-mono: 'JetBrains Mono', monospace;
         
-        /* Glass Effects */
+        /* Glass Effects - Enhanced */
         --glass-bg: rgba(255, 255, 255, 0.1);
         --glass-border: rgba(255, 255, 255, 0.2);
         --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        --glass-blur: 16px;
         
         /* Animations */
         --transition-fast: 150ms ease;
         --transition-normal: 300ms ease;
         --transition-slow: 500ms ease;
+        --transition-cosmic: 800ms cubic-bezier(0.4, 0, 0.2, 1);
+        
+        /* Z-Index Scale */
+        --z-background: -10;
+        --z-stars: -5;
+        --z-content: 10;
+        --z-overlay: 20;
+        --z-modal: 50;
       }
 
       /* 🌙 Dark Mode Variables */
@@ -171,6 +186,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         line-height: 1.6;
         transition: background-color var(--transition-normal), color var(--transition-normal);
         overflow-x: hidden;
+        position: relative;
       }
 
       /* 🌙 Dark Mode */
@@ -189,46 +205,57 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         margin: 0;
       }
 
-      /* 🌟 Glass Morphism Classes */
+      /* 🌟 Enhanced Glass Morphism Classes */
       .glass {
         background: var(--glass-bg);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
         border: 1px solid var(--glass-border);
         box-shadow: var(--glass-shadow);
+        transition: all var(--transition-normal);
       }
 
       .glass-luna {
         background: rgba(100, 116, 139, 0.1);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(100, 116, 139, 0.2);
+        box-shadow: 0 8px 32px rgba(100, 116, 139, 0.1);
       }
 
       .glass-alchemy {
         background: rgba(251, 191, 36, 0.1);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(251, 191, 36, 0.2);
+        box-shadow: 0 8px 32px rgba(251, 191, 36, 0.1);
       }
 
       .glass-mirror {
         background: rgba(168, 85, 247, 0.1);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(168, 85, 247, 0.2);
+        box-shadow: 0 8px 32px rgba(168, 85, 247, 0.1);
       }
 
       .glass-flow {
         background: rgba(59, 130, 246, 0.1);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(59, 130, 246, 0.2);
+        box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
       }
 
       .glass-sage {
         background: rgba(34, 197, 94, 0.1);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(34, 197, 94, 0.2);
+        box-shadow: 0 8px 32px rgba(34, 197, 94, 0.1);
       }
 
-      /* 🎨 Text Gradients */
+      /* 🎨 Enhanced Text Gradients */
       .text-gradient-alchemy {
         background: linear-gradient(135deg, var(--color-alchemy-400), var(--color-alchemy-600));
         background-clip: text;
@@ -253,7 +280,15 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         color: transparent;
       }
 
-      /* ✨ Cosmic Background Patterns */
+      .text-gradient-sage {
+        background: linear-gradient(135deg, var(--color-sage-400), var(--color-sage-600));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      /* 🌌 Cosmic Background Patterns (Fallback) */
       .cosmic-bg {
         background-image: 
           radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
@@ -261,16 +296,58 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
           radial-gradient(circle at 40% 80%, rgba(100, 116, 139, 0.1) 0%, transparent 50%);
       }
 
-      /* 🔮 Particle Background */
-      #particle-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        opacity: 0.6;
+      /* 🎭 Enhanced Animation Classes */
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .animate-glow {
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      .animate-shimmer {
+        animation: shimmer 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+
+      @keyframes glow {
+        from { box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
+        to { box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
+      }
+
+      @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+
+      /* 🔮 Container Classes */
+      .container-sm { max-width: 640px; margin: 0 auto; padding: 0 1rem; }
+      .container-md { max-width: 768px; margin: 0 auto; padding: 0 1rem; }
+      .container-lg { max-width: 1024px; margin: 0 auto; padding: 0 1rem; }
+      .container-xl { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+
+      /* 🎨 Card Classes */
+      .card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        transition: all var(--transition-normal);
+      }
+
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-ritual {
+        background: linear-gradient(135deg, var(--glass-bg), rgba(168, 85, 247, 0.05));
+        border: 1px solid rgba(168, 85, 247, 0.2);
       }
 
       /* ♿ Accessibility */
@@ -291,12 +368,21 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
       /* 📱 Responsive Typography */
       @media (max-width: 640px) {
         html { font-size: 14px; }
+        .container-sm, .container-md, .container-lg, .container-xl {
+          padding: 0 0.75rem;
+        }
       }
       @media (min-width: 1024px) {
         html { font-size: 16px; }
       }
       @media (min-width: 1536px) {
         html { font-size: 18px; }
+      }
+
+      /* 🌟 Focus States */
+      *:focus-visible {
+        outline: 2px solid var(--color-alchemy-500);
+        outline-offset: 2px;
       }
     </style>
 
@@ -306,16 +392,25 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
   </head>
 
   <body class="min-h-screen bg-luna-50 dark:bg-luna-900 text-luna-900 dark:text-luna-50 transition-colors duration-300">
+    <!-- 🌌 Stars Background (Conditional) -->
+    {starsConfig.enabled && (
+      <div id="stars-container" class="fixed inset-0 pointer-events-none" style="z-index: var(--z-stars);">
+        <!-- Stars component will be injected here -->
+      </div>
+    )}
+
     <!-- 🌟 Main Content -->
-    <main id="main-content" class="relative z-10">
+    <main id="main-content" class="relative" style="z-index: var(--z-content);">
       <slot />
     </main>
 
-    <!-- 🎨 Cosmic Particle Background -->
-    <div id="particle-background" class="fixed inset-0 pointer-events-none z-0"></div>
+    <!-- 🎨 Fallback Background (when stars disabled) -->
+    {!starsConfig.enabled && (
+      <div id="fallback-background" class="fixed inset-0 pointer-events-none cosmic-bg" style="z-index: var(--z-background);"></div>
+    )}
 
     <!-- 📜 Enhanced Scripts -->
-    <script>
+    <script define:vars={{ starsConfig }}>
       // 🌙 Enhanced Theme Detection
       function initializeTheme() {
         if (
@@ -356,36 +451,55 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
           ease: "power2.out"
         });
 
-        // 🌌 Particle Background Animation
-        gsap.set("#particle-background", {
-          background: `
-            radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 40% 80%, rgba(100, 116, 139, 0.05) 0%, transparent 50%)
-          `
+        // 🔮 Enhanced scroll animations
+        gsap.utils.toArray('.card-hover').forEach(card => {
+          gsap.fromTo(card, 
+            { y: 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+              }
+            }
+          );
         });
 
-        // 🔮 Subtle background animation
-        gsap.to("#particle-background", {
-          backgroundPosition: "100% 100%",
-          duration: 20,
-          repeat: -1,
-          yoyo: true,
-          ease: "none"
+        // 🌟 Glass element animations
+        gsap.utils.toArray('.glass').forEach(glass => {
+          gsap.fromTo(glass,
+            { scale: 0.95, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 1,
+              scrollTrigger: {
+                trigger: glass,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+              }
+            }
+          );
         });
       }
 
       // 🎯 Performance optimization
       document.addEventListener('DOMContentLoaded', () => {
-        // Lazy load images
+        // 🖼️ Lazy load images
         if ('IntersectionObserver' in window) {
           const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
               if (entry.isIntersecting) {
                 const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
+                if (img.dataset.src) {
+                  img.src = img.dataset.src;
+                  img.classList.remove('lazy');
+                  imageObserver.unobserve(img);
+                }
               }
             });
           });
@@ -394,7 +508,45 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
             imageObserver.observe(img);
           });
         }
+
+        // 🌟 Initialize stars configuration
+        if (starsConfig.enabled) {
+          document.documentElement.style.setProperty('--stars-enabled', 'true');
+        }
+
+        // 🎭 Add loaded class for animations
+        document.body.classList.add('loaded');
       });
+
+      // 🔧 Utility functions
+      window.AlchemyUtils = {
+        // 🎨 Theme toggle
+        toggleTheme() {
+          const isDark = document.documentElement.classList.contains('dark');
+          if (isDark) {
+            document.documentElement.classList.remove('dark');
+            localStorage.theme = 'light';
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.theme = 'dark';
+          }
+        },
+
+        // 🌟 Animate element
+        animateElement(selector, animation = {}) {
+          if (typeof gsap !== 'undefined') {
+            gsap.to(selector, animation);
+          }
+        },
+
+        // 🔮 Create glass effect
+        addGlassEffect(element, variant = 'default') {
+          element.classList.add('glass');
+          if (variant !== 'default') {
+            element.classList.add(`glass-${variant}`);
+          }
+        }
+      };
     </script>
   </body>
 </html>
