@@ -1,0 +1,472 @@
+---
+// ⏰ Timeline Section - The Alchemical Journey (Enhanced)
+import Button from '@components/ui/Button.astro';
+
+// 🎭 Timeline data - Your professional journey
+const timelineEvents = [
+  {
+    year: '2024',
+    period: 'Present',
+    title: 'Digital Alchemist & Cultural Bridge',
+    role: 'Freelance Designer & Consultant',
+    location: 'Global Remote',
+    type: 'current',
+    description: 'Specializing in AI-powered design systems, sustainable fashion technology, and Thai-Western cultural integration. Creating digital experiences that honor both innovation and heritage.',
+    achievements: [
+      'Launched Mirror of Inner Alchemy portfolio',
+      'Developed Holy Bless sacred geometry interface',
+      'Created Siam Blessing cultural preservation app',
+      'Voice acting for international projects'
+    ],
+    technologies: ['React', 'Astro', 'AI/ML', 'Figma', 'Voice Acting'],
+    category: 'transformation'
+  },
+  {
+    year: '2023',
+    period: '2023 - 2024',
+    title: 'Jungian UX Research & Voice Development',
+    role: 'Independent Researcher & Voice Artist',
+    location: 'Thailand & UK',
+    type: 'experience',
+    description: 'Deep dive into archetypal psychology applications in user experience design. Developed voice acting skills while researching cultural identity in digital spaces.',
+    achievements: [
+      'Completed Jungian psychology certification',
+      'Voice acting portfolio development',
+      'Cultural consulting for tech startups',
+      'Published research on archetypal UX patterns'
+    ],
+    technologies: ['Psychology Research', 'Voice Recording', 'Cultural Analysis', 'UX Research'],
+    category: 'reflection'
+  },
+  {
+    year: '2022',
+    period: '2022 - 2023',
+    title: 'Fashion Tech Innovation',
+    role: 'Sustainable Fashion Designer',
+    location: 'Bangkok, Thailand',
+    type: 'experience',
+    description: 'Pioneered sustainable fashion solutions combining traditional Thai craftsmanship with modern technology. Focused on ethical production and cultural preservation.',
+    achievements: [
+      'Launched sustainable fashion line',
+      'Integrated AI design tools',
+      'Collaborated with local artisans',
+      'Reduced production waste by 40%'
+    ],
+    technologies: ['Sustainable Materials', 'AI Design', 'Traditional Crafts', 'Supply Chain'],
+    category: 'creation'
+  },
+  {
+    year: '2021',
+    period: '2021 - 2022',
+    title: 'Digital Design Foundation',
+    role: 'UI/UX Designer',
+    location: 'Remote & Bangkok',
+    type: 'experience',
+    description: 'Built foundational skills in digital design while exploring the intersection of technology and cultural identity. Specialized in inclusive design practices.',
+    achievements: [
+      'Mastered modern design tools',
+      'Developed cultural sensitivity framework',
+      'Created inclusive design guidelines',
+      'Built first portfolio website'
+    ],
+    technologies: ['Figma', 'Adobe Creative Suite', 'HTML/CSS', 'JavaScript'],
+    category: 'foundation'
+  },
+  {
+    year: '2020',
+    period: '2019 - 2021',
+    title: 'Cultural Studies & Self-Discovery',
+    role: 'Student & Cultural Explorer',
+    location: 'Thailand & International',
+    type: 'education',
+    description: 'Intensive period of cultural studies, language learning, and personal development. Explored the intersection of Eastern wisdom and Western innovation.',
+    achievements: [
+      'Completed cultural studies program',
+      'Fluency in Thai and English',
+      'Traveled extensively for cultural research',
+      'Developed personal philosophy'
+    ],
+    technologies: ['Cultural Research', 'Language Studies', 'Philosophy', 'Travel'],
+    category: 'discovery'
+  },
+  {
+    year: '2025',
+    period: 'Future Vision',
+    title: 'Alchemical Design Studio',
+    role: 'Founder & Creative Director',
+    location: 'Global Impact',
+    type: 'future',
+    description: 'Vision to establish a design studio that bridges cultures, integrates psychology with technology, and creates meaningful digital experiences that honor both tradition and innovation.',
+    achievements: [
+      'Launch international design studio',
+      'Publish book on archetypal design',
+      'Speak at global design conferences',
+      'Mentor next generation of cultural bridges'
+    ],
+    technologies: ['Advanced AI', 'VR/AR', 'Quantum Computing', 'Global Collaboration'],
+    category: 'vision'
+  }
+];
+
+// 🎨 Category styling
+const categoryStyles = {
+  transformation: { color: 'alchemy', icon: '🔮', gradient: 'from-alchemy-500 to-alchemy-600' },
+  reflection: { color: 'mirror', icon: '🪞', gradient: 'from-mirror-500 to-mirror-600' },
+  creation: { color: 'sage', icon: '🌱', gradient: 'from-sage-500 to-sage-600' },
+  foundation: { color: 'flow', icon: '🏗️', gradient: 'from-flow-500 to-flow-600' },
+  discovery: { color: 'luna', icon: '🧭', gradient: 'from-luna-500 to-luna-600' },
+  vision: { color: 'alchemy', icon: '✨', gradient: 'from-alchemy-400 to-mirror-500' }
+};
+---
+
+<section id="timeline" class="relative py-20 overflow-hidden">
+  <!-- 🌌 Subtle Background Pattern (works with Stars) -->
+  <div class="absolute inset-0 opacity-20 pointer-events-none">
+    <div class="absolute inset-0 bg-gradient-to-br from-alchemy-50/30 via-transparent to-flow-50/30 dark:from-alchemy-900/20 dark:via-transparent dark:to-flow-900/20"></div>
+    <!-- ✨ Floating Time Symbols -->
+    <div class="absolute top-20 left-20 w-16 h-16 border-2 border-alchemy-300 dark:border-alchemy-700 rounded-full opacity-30 animate-pulse"></div>
+    <div class="absolute bottom-32 right-16 w-12 h-12 bg-flow-300 dark:bg-flow-700 rotate-45 opacity-25 animate-float"></div>
+    <div class="absolute top-1/2 left-10 text-4xl opacity-20 animate-float" style="animation-delay: 1s;">⏰</div>
+    <div class="absolute bottom-20 right-32 text-3xl opacity-15 animate-pulse-glow" style="animation-delay: 2s;">🌟</div>
+  </div>
+
+  <div class="container-lg relative z-10">
+    <!-- 🎯 Enhanced Section Header -->
+    <div class="text-center mb-20" id="timeline-header">
+      <div class="inline-block mb-6">
+        <div class="glass-alchemy px-6 py-3 rounded-full mb-4">
+          <span class="text-sm font-semibold text-alchemy-600 dark:text-alchemy-400 tracking-wider uppercase">
+            ⏰ The Alchemical Journey
+          </span>
+        </div>
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
+        <span class="text-gradient-alchemy">Timeline</span> 
+        <span class="text-luna-800 dark:text-luna-200">of Transformation</span>
+      </h2>
+      
+      <p class="text-xl md:text-2xl text-luna-600 dark:text-luna-300 max-w-3xl mx-auto leading-relaxed">
+        Every step in the journey of becoming a 
+        <em class="text-alchemy-600 dark:text-alchemy-400">digital alchemist</em>, 
+        bridging cultures and transforming ideas into reality.
+      </p>
+    </div>
+
+    <!-- ⏰ Enhanced Timeline -->
+    <div class="relative" id="timeline-container">
+      <!-- 🌟 Central Timeline Line -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-alchemy-300 via-mirror-300 via-sage-300 via-flow-300 to-luna-300 dark:from-alchemy-700 dark:via-mirror-700 dark:via-sage-700 dark:via-flow-700 dark:to-luna-700 rounded-full opacity-60"></div>
+      
+      <!-- 📅 Timeline Events -->
+      <div class="space-y-16">
+        {timelineEvents.map((event, index) => {
+          const style = categoryStyles[event.category];
+          const isLeft = index % 2 === 0;
+          
+          return (
+            <div 
+              class={`timeline-event relative flex items-center ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
+              data-category={event.category}
+            >
+              <!-- 🎯 Timeline Node -->
+              <div class="absolute left-1/2 transform -translate-x-1/2 z-20">
+                <div class={`w-16 h-16 rounded-full glass-${style.color} border-4 border-white dark:border-luna-900 flex items-center justify-center text-2xl shadow-lg hover:scale-110 transition-all duration-300`}>
+                  {style.icon}
+                </div>
+              </div>
+
+              <!-- 📝 Event Content -->
+              <div class={`w-5/12 ${isLeft ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
+                <div class={`glass-${style.color} p-8 rounded-3xl border border-white/10 hover:scale-105 transition-all duration-500 group`}>
+                  
+                  <!-- 🏷️ Year Badge -->
+                  <div class={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold mb-4 bg-gradient-to-r ${style.gradient} text-white shadow-lg`}>
+                    <span class="mr-2">{style.icon}</span>
+                    {event.year} {event.type === 'current' && '• Current'}
+                    {event.type === 'future' && '• Vision'}
+                  </div>
+
+                  <!-- 📋 Event Details -->
+                  <div class="mb-4">
+                    <h3 class={`text-2xl font-heading font-bold mb-2 text-${style.color}-800 dark:text-${style.color}-200 group-hover:text-${style.color}-600 dark:group-hover:text-${style.color}-400 transition-colors`}>
+                      {event.title}
+                    </h3>
+                    <div class="text-lg font-semibold text-luna-700 dark:text-luna-300 mb-1">
+                      {event.role}
+                    </div>
+                    <div class="text-sm text-luna-500 dark:text-luna-400 mb-1">
+                      📍 {event.location}
+                    </div>
+                    <div class="text-sm text-luna-500 dark:text-luna-400">
+                      📅 {event.period}
+                    </div>
+                  </div>
+
+                  <!-- 📖 Description -->
+                  <p class="text-luna-600 dark:text-luna-300 leading-relaxed mb-6">
+                    {event.description}
+                  </p>
+
+                  <!-- 🏆 Achievements -->
+                  <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-luna-700 dark:text-luna-300 mb-3 uppercase tracking-wide">
+                      Key Achievements
+                    </h4>
+                    <ul class="space-y-2">
+                      {event.achievements.map(achievement => (
+                        <li class="flex items-start gap-2 text-sm text-luna-600 dark:text-luna-400">
+                          <span class="text-alchemy-500 mt-0.5">✨</span>
+                          <span>{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- 🛠️ Technologies -->
+                  <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-luna-700 dark:text-luna-300 mb-3 uppercase tracking-wide">
+                      Technologies & Skills
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                      {event.technologies.map(tech => (
+                        <span class={`px-3 py-1 rounded-full text-xs font-medium bg-${style.color}-100 dark:bg-${style.color}-800 text-${style.color}-700 dark:text-${style.color}-300`}>
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- 🔗 Action Button -->
+                  {event.type === 'current' && (
+                    <Button variant={style.color} size="sm" href="#contact">
+                      <span class="flex items-center gap-2">
+                        💬 <span>Let's Collaborate</span>
+                      </span>
+                    </Button>
+                  )}
+                  
+                  {event.type === 'future' && (
+                    <Button variant={style.color} size="sm" href="#contact">
+                      <span class="flex items-center gap-2">
+                        🚀 <span>Join the Vision</span>
+                      </span>
+                    </Button>
+                  )}
+                </div>
+              </div>
+
+              <!-- 📱 Mobile Year Display -->
+              <div class={`md:hidden absolute ${isLeft ? 'right-4' : 'left-4'} top-4 z-10`}>
+                <div class={`px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${style.gradient} text-white`}>
+                  {event.year}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- 🌟 Enhanced Call to Action -->
+    <div class="text-center mt-20" id="timeline-cta">
+      <div class="glass-alchemy p-8 rounded-3xl max-w-2xl mx-auto">
+        <h3 class="text-2xl font-heading font-bold text-alchemy-800 dark:text-alchemy-200 mb-4">
+          Ready to Create the Next Chapter?
+        </h3>
+        <p class="text-luna-600 dark:text-luna-300 mb-6">
+          Every great transformation begins with a single conversation. 
+          Let's explore how we can create something meaningful together.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="alchemy" size="lg" href="#contact">
+            <span class="flex items-center gap-2">
+              🔮 <span>Start Our Journey</span>
+            </span>
+          </Button>
+          <Button variant="ghost" size="lg" href="#projects">
+            <span class="flex items-center gap-2">
+              🎨 <span>View My Work</span>
+            </span>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🎭 Enhanced GSAP Animations -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined') {
+      // 🎯 Timeline Section Animation
+      const timelineTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#timeline",
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      // 📝 Header Animation
+      timelineTl.fromTo("#timeline-header", {
+        y: 50,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out"
+      });
+
+      // ⏰ Timeline Events Animation
+      gsap.utils.toArray('.timeline-event').forEach((event, index) => {
+        gsap.fromTo(event, {
+          y: 100,
+          opacity: 0,
+          scale: 0.8
+        }, {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: event,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        });
+      });
+
+      // 🌟 CTA Animation
+      timelineTl.fromTo("#timeline-cta", {
+        y: 40,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.3");
+
+      // 🎭 Timeline Node Hover Effects
+      document.querySelectorAll('.timeline-event').forEach(event => {
+        const node = event.querySelector('.w-16.h-16');
+        const content = event.querySelector('.glass-alchemy, .glass-mirror, .glass-sage, .glass-flow, .glass-luna');
+        
+        event.addEventListener('mouseenter', () => {
+          gsap.to(node, {
+            scale: 1.2,
+            rotation: 10,
+            duration: 0.3,
+            ease: "back.out(1.7)"
+          });
+          
+          gsap.to(content, {
+            y: -5,
+            scale: 1.02,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+
+        event.addEventListener('mouseleave', () => {
+          gsap.to(node, {
+            scale: 1,
+            rotation: 0,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+          
+          gsap.to(content, {
+            y: 0,
+            scale: 1,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+      });
+
+      // 🌟 Floating background elements
+      gsap.to(".animate-float", {
+        y: -20,
+        rotation: 15,
+        repeat: -1,
+        yoyo: true,
+        duration: 6,
+        ease: "sine.inOut",
+        stagger: 2
+      });
+    }
+  });
+</script>
+
+<style>
+  /* 🎨 Enhanced Timeline Styles */
+  .timeline-event {
+    position: relative;
+  }
+
+  /* 📱 Mobile Responsive Timeline */
+  @media (max-width: 768px) {
+    .timeline-event {
+      flex-direction: column !important;
+      text-align: center !important;
+    }
+    
+    .timeline-event > div:last-child {
+      width: 100% !important;
+      padding: 0 1rem !important;
+      margin-top: 4rem;
+    }
+    
+    /* Hide desktop timeline line on mobile */
+    #timeline-container > .absolute {
+      display: none;
+    }
+  }
+
+  /* 🎭 Timeline Node Pulse Effect */
+  .timeline-event .w-16.h-16 {
+    position: relative;
+  }
+
+  .timeline-event .w-16.h-16::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, transparent, rgba(251, 191, 36, 0.3), transparent);
+    animation: rotate 3s linear infinite;
+    z-index: -1;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ♿ Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-event,
+    .animate-float,
+    .animate-pulse,
+    .w-16.h-16::before {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* 🌙 Dark mode enhancements */
+  @media (prefers-color-scheme: dark) {
+    .timeline-event .glass-alchemy,
+    .timeline-event .glass-mirror,
+    .timeline-event .glass-sage,
+    .timeline-event .glass-flow,
+    .timeline-event .glass-luna {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+</style>
