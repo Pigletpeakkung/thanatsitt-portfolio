@@ -1,0 +1,400 @@
+---
+// 🌙 Base Layout - Enhanced for Alchemical Portfolio
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Mirror of Inner Alchemy | Thanatsitt Portfolio',
+  description = 'Portfolio of Thanatsitt Santisamranwilai - Fusing design, code, and Jungian-inspired thought',
+  image = '/images/og-image.jpg',
+  canonical = Astro.url.href
+} = Astro.props;
+
+const siteTitle = 'Thanatsitt Portfolio';
+const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <!-- 🎯 Meta Essentials -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- 📄 Page Info -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- 🎨 Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- 🌐 Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- 🐦 Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.url)} />
+    <meta name="twitter:creator" content="@ThanattsittS" />
+
+    <!-- 🎨 Theme Colors -->
+    <meta name="theme-color" content="#334155" />
+    <meta name="msapplication-TileColor" content="#334155" />
+
+    <!-- 📱 PWA -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- 🔤 Fonts - Optimized Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 🎨 Enhanced Global Styles -->
+    <style>
+      /* 🌙 CSS Custom Properties - Alchemical Palette */
+      :root {
+        /* Luna Palette - Primary Grays */
+        --color-luna-50: #f8fafc;
+        --color-luna-100: #f1f5f9;
+        --color-luna-200: #e2e8f0;
+        --color-luna-300: #cbd5e1;
+        --color-luna-400: #94a3b8;
+        --color-luna-500: #64748b;
+        --color-luna-600: #475569;
+        --color-luna-700: #334155;
+        --color-luna-800: #1e293b;
+        --color-luna-900: #0f172a;
+        --color-luna-950: #020617;
+        
+        /* Alchemy Palette - Transformation Gold */
+        --color-alchemy-50: #fffbeb;
+        --color-alchemy-100: #fef3c7;
+        --color-alchemy-200: #fde68a;
+        --color-alchemy-300: #fcd34d;
+        --color-alchemy-400: #fbbf24;
+        --color-alchemy-500: #f59e0b;
+        --color-alchemy-600: #d97706;
+        --color-alchemy-700: #b45309;
+        --color-alchemy-800: #92400e;
+        --color-alchemy-900: #78350f;
+        
+        /* Mirror Palette - Reflection Purple */
+        --color-mirror-50: #faf5ff;
+        --color-mirror-100: #f3e8ff;
+        --color-mirror-200: #e9d5ff;
+        --color-mirror-300: #d8b4fe;
+        --color-mirror-400: #c084fc;
+        --color-mirror-500: #a855f7;
+        --color-mirror-600: #9333ea;
+        --color-mirror-700: #7c3aed;
+        --color-mirror-800: #6b21a8;
+        --color-mirror-900: #581c87;
+        
+        /* Flow Palette - Communication Blue */
+        --color-flow-50: #eff6ff;
+        --color-flow-100: #dbeafe;
+        --color-flow-200: #bfdbfe;
+        --color-flow-300: #93c5fd;
+        --color-flow-400: #60a5fa;
+        --color-flow-500: #3b82f6;
+        --color-flow-600: #2563eb;
+        --color-flow-700: #1d4ed8;
+        --color-flow-800: #1e40af;
+        --color-flow-900: #1e3a8a;
+        
+        /* Sage Palette - Wisdom Green */
+        --color-sage-50: #f0fdf4;
+        --color-sage-100: #dcfce7;
+        --color-sage-200: #bbf7d0;
+        --color-sage-300: #86efac;
+        --color-sage-400: #4ade80;
+        --color-sage-500: #22c55e;
+        --color-sage-600: #16a34a;
+        --color-sage-700: #15803d;
+        --color-sage-800: #166534;
+        --color-sage-900: #14532d;
+        
+        /* Typography */
+        --font-display: 'Inter', system-ui, sans-serif;
+        --font-heading: 'Playfair Display', Georgia, serif;
+        --font-mono: 'JetBrains Mono', monospace;
+        
+        /* Glass Effects */
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        
+        /* Animations */
+        --transition-fast: 150ms ease;
+        --transition-normal: 300ms ease;
+        --transition-slow: 500ms ease;
+      }
+
+      /* 🌙 Dark Mode Variables */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --glass-bg: rgba(0, 0, 0, 0.2);
+          --glass-border: rgba(255, 255, 255, 0.1);
+          --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      /* 🎯 Base Styles */
+      html {
+        font-family: var(--font-display);
+        scroll-behavior: smooth;
+        scroll-padding-top: 2rem;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--color-luna-50);
+        color: var(--color-luna-900);
+        line-height: 1.6;
+        transition: background-color var(--transition-normal), color var(--transition-normal);
+        overflow-x: hidden;
+      }
+
+      /* 🌙 Dark Mode */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: var(--color-luna-900);
+          color: var(--color-luna-50);
+        }
+      }
+
+      /* 📝 Typography */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      /* 🌟 Glass Morphism Classes */
+      .glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+      }
+
+      .glass-luna {
+        background: rgba(100, 116, 139, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(100, 116, 139, 0.2);
+      }
+
+      .glass-alchemy {
+        background: rgba(251, 191, 36, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(251, 191, 36, 0.2);
+      }
+
+      .glass-mirror {
+        background: rgba(168, 85, 247, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(168, 85, 247, 0.2);
+      }
+
+      .glass-flow {
+        background: rgba(59, 130, 246, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+      }
+
+      .glass-sage {
+        background: rgba(34, 197, 94, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+      }
+
+      /* 🎨 Text Gradients */
+      .text-gradient-alchemy {
+        background: linear-gradient(135deg, var(--color-alchemy-400), var(--color-alchemy-600));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      .text-gradient-mirror {
+        background: linear-gradient(135deg, var(--color-mirror-400), var(--color-mirror-600));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      .text-gradient-flow {
+        background: linear-gradient(135deg, var(--color-flow-400), var(--color-flow-600));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      /* ✨ Cosmic Background Patterns */
+      .cosmic-bg {
+        background-image: 
+          radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 40% 80%, rgba(100, 116, 139, 0.1) 0%, transparent 50%);
+      }
+
+      /* 🔮 Particle Background */
+      #particle-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.6;
+      }
+
+      /* ♿ Accessibility */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      /* 📱 Responsive Typography */
+      @media (max-width: 640px) {
+        html { font-size: 14px; }
+      }
+      @media (min-width: 1024px) {
+        html { font-size: 16px; }
+      }
+      @media (min-width: 1536px) {
+        html { font-size: 18px; }
+      }
+    </style>
+
+    <!-- 🎭 GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </head>
+
+  <body class="min-h-screen bg-luna-50 dark:bg-luna-900 text-luna-900 dark:text-luna-50 transition-colors duration-300">
+    <!-- 🌟 Main Content -->
+    <main id="main-content" class="relative z-10">
+      <slot />
+    </main>
+
+    <!-- 🎨 Cosmic Particle Background -->
+    <div id="particle-background" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- 📜 Enhanced Scripts -->
+    <script>
+      // 🌙 Enhanced Theme Detection
+      function initializeTheme() {
+        if (
+          localStorage.theme === 'dark' ||
+          (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      }
+
+      // 🎯 Initialize on load
+      initializeTheme();
+
+      // 🔄 Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', initializeTheme);
+
+      // ✨ Smooth Scroll Polyfill
+      if (!('scrollBehavior' in document.documentElement.style)) {
+        import('https://cdn.skypack.dev/smooth-scroll').then((module) => {
+          const scroll = new module.default('a[href*="#"]', {
+            speed: 500,
+            speedAsDuration: true,
+          });
+        });
+      }
+
+      // 🌟 Initialize GSAP
+      if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // 🎭 Global GSAP defaults
+        gsap.defaults({
+          duration: 1,
+          ease: "power2.out"
+        });
+
+        // 🌌 Particle Background Animation
+        gsap.set("#particle-background", {
+          background: `
+            radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(100, 116, 139, 0.05) 0%, transparent 50%)
+          `
+        });
+
+        // 🔮 Subtle background animation
+        gsap.to("#particle-background", {
+          backgroundPosition: "100% 100%",
+          duration: 20,
+          repeat: -1,
+          yoyo: true,
+          ease: "none"
+        });
+      }
+
+      // 🎯 Performance optimization
+      document.addEventListener('DOMContentLoaded', () => {
+        // Lazy load images
+        if ('IntersectionObserver' in window) {
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+              }
+            });
+          });
+
+          document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
