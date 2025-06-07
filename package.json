@@ -1,0 +1,238 @@
+{
+  "name": "thanatsitt-portfolio",
+  "version": "1.0.0",
+  "description": "Mirror of Inner Alchemy – Portfolio of Thanatsitt, fusing design, code, and Jungian-inspired thought.",
+  "author": {
+    "name": "Thanatsitt Santisamranwilai",
+    "email": "thanattsitt.info@yahoo.co.uk",
+    "url": "https://www.pegearts.com"
+  },
+  "homepage": "https://pigletpeakkung.github.io/thanatsitt-portfolio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PigletPeakKung/thanatsitt-portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PigletPeakKung/thanatsitt-portfolio/issues"
+  },
+  "keywords": [
+    "thanatsitt",
+    "portfolio",
+    "inner-alchemy",
+    "jungian",
+    "design",
+    "astro",
+    "tailwind",
+    "creative-tech",
+    "symbolic-design",
+    "digital-ritual",
+    "archetypes",
+    "shadow-work",
+    "individuation",
+    "cultural-bridge",
+    "ai-fashion",
+    "voice-acting",
+    "thai-british",
+    "sustainable-fashion",
+    "memory-palace",
+    "thanatsitt-portfolio"
+  ],
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist",
+    "deploy:vercel": "npm run build && vercel --prod",
+    "deploy:surge": "npm run build && surge dist --domain thanatsitt-portfolio.surge.sh",
+    "lint": "astro check",
+    "lint:fix": "astro check --fix",
+    "format": "prettier --write \"src/**/*.{astro,ts,tsx,js,jsx,css,md,json}\"",
+    "format:check": "prettier --check \"src/**/*.{astro,ts,tsx,js,jsx,css,md,json}\"",
+    "type-check": "astro check",
+    "clean": "rm -rf dist node_modules package-lock.json",
+    "reinstall": "npm run clean && npm install",
+    "update": "npm update && npm audit fix",
+    "security-check": "npm audit",
+    "serve": "serve -s dist -l 3000",
+    "serve:https": "serve -s dist -l 3000 --ssl",
+    "analyze": "npm run build && npx webpack-bundle-analyzer dist/**/*.js",
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html",
+    "test": "echo \"No tests specified\" && exit 0",
+    "ritual:deploy": "echo '🌙 Beginning deployment ritual...' && npm run build && npm run deploy && echo '✨ Thanatsitt manifests in the digital realm'",
+    "mirror:check": "npm run type-check && npm run lint && echo '🔮 The mirror reflects clearly'",
+    "alchemy:transform": "npm run format && npm run build && echo '🧪 Code transmutation complete'",
+    "shadow:work": "npm run clean && npm run reinstall && echo '🌑 Shadow integration complete'",
+    "individuation": "npm run mirror:check && npm run alchemy:transform && npm run ritual:deploy && echo '🌟 Self-actualization achieved'"
+  },
+  "dependencies": {
+    "astro": "^4.0.0",
+    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/react": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/rss": "^4.0.0",
+    "tailwindcss": "^3.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "framer-motion": "^11.0.0",
+    "aos": "^2.3.4",
+    "vanilla-tilt": "^1.7.3",
+    "tsparticles": "^3.1.0",
+    "smooth-scroll": "^16.1.3",
+    "lucide-react": "^0.295.0",
+    "clsx": "^2.0.0",
+    "class-variance-authority": "^0.7.0",
+    "tailwind-merge": "^2.0.0",
+    "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "react-intersection-observer": "^9.5.3",
+    "react-use": "^17.4.2",
+    "date-fns": "^2.30.0",
+    "sharp": "^0.32.6",
+    "@astrojs/image": "^0.18.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@types/node": "^20.10.4",
+    "@types/aos": "^3.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "typescript": "^5.3.3",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "prettier": "^3.1.0",
+    "prettier-plugin-astro": "^0.12.2",
+    "prettier-plugin-tailwindcss": "^0.5.7",
+    "eslint": "^8.55.0",
+    "eslint-plugin-astro": "^0.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "gh-pages": "^6.1.0",
+    "netlify-cli": "^17.10.1",
+    "vercel": "^32.7.2",
+    "surge": "^0.23.1",
+    "serve": "^14.2.1",
+    "lighthouse": "^11.4.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "cross-env": "^7.0.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not ie <= 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{astro,ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.{css,md,json}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run mirror:check"
+    }
+  },
+  "social": {
+    "twitter": "https://x.com/ThanattsittS",
+    "instagram": "https://www.instagram.com/thanattsitt.s",
+    "medium": "https://medium.com/@zeintharts",
+    "linkedin": "https://linkedin.com/in/thanattsitts",
+    "telegram": "https://t.me/Mino_asahi",
+    "threads": "https://www.threads.net/@thanattsitt.s",
+    "bluesky": "https://bsky.app/profile/thanattsitt.bsky.social",
+    "website": "https://www.pegearts.com"
+  },
+  "projects": {
+    "Codex Terra Arcanum": {
+      "url": "https://github.com/Pigletpeakkung/Codex-Terra-Arcanum",
+      "description": "Symbolic design system and reflective tech garden"
+    },
+    "Holy Bless": {
+      "repo": "https://github.com/Pigletpeakkung/Holy-bless",
+      "live": "https://pigletpeakkung.github.io/Holy-bless/",
+      "description": "Digital blessing and ritual interface"
+    },
+    "Siam Blessing": {
+      "repo": "https://github.com/Pigletpeakkung/Siam-Blessing",
+      "live": "https://pigletpeakkung.github.io/Siam-Blessing/",
+      "description": "Thai cultural blessing application"
+    },
+    "Conversation Topic Selector": {
+      "url": "https://github.com/Pigletpeakkung/conversation-topic-selector",
+      "description": "AI-powered conversation facilitation tool"
+    },
+    "Cozy Light": {
+      "url": "https://github.com/Pigletpeakkung/Cozy-light",
+      "description": "Ambient lighting and mood interface"
+    }
+  },
+  "thanatsitt": {
+    "philosophy": "To know the darkness is to know the light that shapes it",
+    "mission": "Bridging Thai heritage with Western innovation through symbolic design and inner work",
+    "archetypes": [
+      "The Creator - Fashion & Design",
+      "The Sage - Jungian Psychology", 
+      "The Magician - AI & Technology",
+      "The Explorer - Cultural Bridge Building",
+      "The Communicator - Voice Acting & Storytelling"
+    ],
+    "elements": {
+      "moon": "Reflection, cycles, and inner wisdom",
+      "mirror": "Self-awareness, truth, and shadow work",
+      "alchemy": "Transformation, growth, and individuation",
+      "codex": "Knowledge, memory palace, and symbolic systems"
+    },
+    "rituals": {
+      "daily": "npm run dev",
+      "reflection": "npm run mirror:check",
+      "transformation": "npm run alchemy:transform", 
+      "shadow-work": "npm run shadow:work",
+      "manifestation": "npm run ritual:deploy",
+      "individuation": "npm run individuation"
+    },
+    "specialties": [
+      "AI-powered sustainable fashion",
+      "Jungian-inspired UX design",
+      "Cultural consulting and bridge-building",
+      "Voice acting and character development",
+      "Symbolic design systems",
+      "Digital ritual and ceremony design"
+    ]
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://www.pegearts.com/support"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
