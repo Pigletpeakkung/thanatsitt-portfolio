@@ -1,0 +1,377 @@
+---
+// 📝 Journal Section - Alchemical Reflections (Enhanced)
+import Button from '@components/ui/Button.astro';
+
+// 🎭 Mock journal posts for now (replace with Astro content collections later)
+const posts = [
+  {
+    slug: 'digital-alchemy-design',
+    data: {
+      title: 'Digital Alchemy: Transforming Ideas into Interface',
+      date: '2024-01-15',
+      excerpt: 'Exploring how ancient alchemical principles can guide modern design thinking, creating interfaces that transform user consciousness.',
+      category: 'Design Philosophy',
+      readTime: '5 min read',
+      featured: true
+    }
+  },
+  {
+    slug: 'thai-wisdom-modern-tech',
+    data: {
+      title: 'Thai Wisdom Meets Modern Technology',
+      date: '2024-01-10',
+      excerpt: 'Bridging traditional Thai cultural values with contemporary digital experiences, honoring heritage while embracing innovation.',
+      category: 'Cultural Bridge',
+      readTime: '7 min read',
+      featured: false
+    }
+  },
+  {
+    slug: 'shadow-work-in-ux',
+    data: {
+      title: 'Shadow Work in User Experience Design',
+      date: '2024-01-05',
+      excerpt: 'How Jungian psychology and shadow integration can create more authentic, empathetic digital experiences.',
+      category: 'Psychology',
+      readTime: '6 min read',
+      featured: true
+    }
+  },
+  {
+    slug: 'voice-as-archetypal-expression',
+    data: {
+      title: 'Voice as Archetypal Expression',
+      date: '2023-12-28',
+      excerpt: 'Exploring how voice acting and character development connect to universal archetypes and collective unconscious.',
+      category: 'Voice & Character',
+      readTime: '4 min read',
+      featured: false
+    }
+  }
+];
+
+// 🎯 Category color mapping
+const categoryColors = {
+  'Design Philosophy': 'alchemy',
+  'Cultural Bridge': 'sage',
+  'Psychology': 'mirror',
+  'Voice & Character': 'flow'
+};
+---
+
+<section id="journal" class="relative py-20 overflow-hidden">
+  <!-- 🌌 Subtle Background Pattern (works with Stars) -->
+  <div class="absolute inset-0 opacity-20 pointer-events-none">
+    <div class="absolute inset-0 bg-gradient-to-br from-mirror-50/30 via-transparent to-alchemy-50/30 dark:from-mirror-900/20 dark:via-transparent dark:to-alchemy-900/20"></div>
+    <!-- ✨ Floating Journal Symbols -->
+    <div class="absolute top-20 right-20 w-16 h-16 border border-mirror-300 dark:border-mirror-700 rounded-full opacity-30 animate-float"></div>
+    <div class="absolute bottom-32 left-16 w-12 h-12 bg-alchemy-300 dark:bg-alchemy-700 rotate-45 opacity-25 animate-pulse-glow"></div>
+    <div class="absolute top-1/2 right-10 text-4xl opacity-20 animate-float" style="animation-delay: 2s;">📝</div>
+  </div>
+
+  <div class="container-lg relative z-10">
+    <!-- 🎯 Enhanced Section Header -->
+    <div class="text-center mb-20" id="journal-header">
+      <div class="inline-block mb-6">
+        <div class="glass-mirror px-6 py-3 rounded-full mb-4">
+          <span class="text-sm font-semibold text-mirror-600 dark:text-mirror-400 tracking-wider uppercase">
+            📝 Alchemical Reflections
+          </span>
+        </div>
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
+        <span class="text-gradient-mirror">Journal</span> 
+        <span class="text-luna-800 dark:text-luna-200">of Reflections</span>
+      </h2>
+      
+      <p class="text-xl md:text-2xl text-luna-600 dark:text-luna-300 max-w-3xl mx-auto leading-relaxed">
+        A space to explore <em class="text-mirror-600 dark:text-mirror-400">design, symbolism, selfhood</em>, 
+        and the soul's quiet transformations.
+      </p>
+    </div>
+
+    <!-- 📚 Enhanced Journal Posts Grid -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16" id="journal-posts">
+      {posts.map((post, index) => (
+        <article 
+          class={`journal-post group relative ${post.data.featured ? 'md:col-span-2' : ''}`}
+          data-category={post.data.category}
+        >
+          <!-- 🎨 Dynamic Glass Card -->
+          <div class={`glass-${categoryColors[post.data.category]} p-8 rounded-3xl h-full transition-all duration-500 hover:scale-105 hover:-translate-y-2 border border-white/10`}>
+            
+            <!-- 🏷️ Category Badge -->
+            <div class="flex items-center justify-between mb-4">
+              <span class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-${categoryColors[post.data.category]}-100 dark:bg-${categoryColors[post.data.category]}-800 text-${categoryColors[post.data.category]}-700 dark:text-${categoryColors[post.data.category]}-300`}>
+                {post.data.category === 'Design Philosophy' && '🔮'}
+                {post.data.category === 'Cultural Bridge' && '🌏'}
+                {post.data.category === 'Psychology' && '🧠'}
+                {post.data.category === 'Voice & Character' && '🎭'}
+                <span class="ml-1">{post.data.category}</span>
+              </span>
+              
+              {post.data.featured && (
+                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-alchemy-100 dark:bg-alchemy-800 text-alchemy-700 dark:text-alchemy-300">
+                  ⭐ Featured
+                </span>
+              )}
+            </div>
+
+            <!-- 📝 Post Content -->
+            <div class="mb-6">
+              <h3 class={`text-${post.data.featured ? '2xl md:text-3xl' : 'xl'} font-heading font-bold mb-3 text-luna-900 dark:text-luna-100 group-hover:text-${categoryColors[post.data.category]}-600 dark:group-hover:text-${categoryColors[post.data.category]}-400 transition-colors duration-300`}>
+                <a href={`/journal/${post.slug}`} class="block">
+                  {post.data.title}
+                </a>
+              </h3>
+              
+              <p class={`text-luna-600 dark:text-luna-300 leading-relaxed ${post.data.featured ? 'text-lg' : 'text-base'} mb-4`}>
+                {post.data.excerpt}
+              </p>
+            </div>
+
+            <!-- 📊 Post Meta -->
+            <div class="flex items-center justify-between text-sm text-luna-500 dark:text-luna-400 mb-6">
+              <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1">
+                  📅 {new Date(post.data.date).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}
+                </span>
+                <span class="flex items-center gap-1">
+                  ⏱️ {post.data.readTime}
+                </span>
+              </div>
+            </div>
+
+            <!-- 🔗 Read More Button -->
+            <div class="flex justify-between items-center">
+              <Button 
+                href={`/journal/${post.slug}`} 
+                variant={categoryColors[post.data.category]} 
+                size={post.data.featured ? 'lg' : 'md'}
+                class="group-hover:scale-105 transition-transform duration-300"
+              >
+                <span class="flex items-center gap-2">
+                  📖 <span>Read More</span>
+                </span>
+              </Button>
+              
+              <!-- 🔗 Share Button -->
+              <button 
+                class="p-2 rounded-full glass-luna hover:scale-110 transition-all duration-300"
+                onclick={`sharePost('${post.data.title}', '/journal/${post.slug}')`}
+                title="Share this post"
+              >
+                🔗
+              </button>
+            </div>
+
+            <!-- ✨ Hover Overlay Effect -->
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- 🌟 Enhanced Call to Action -->
+    <div class="text-center" id="journal-cta">
+      <div class="glass-mirror p-8 rounded-3xl max-w-2xl mx-auto mb-8">
+        <h3 class="text-2xl font-heading font-bold text-mirror-800 dark:text-mirror-200 mb-4">
+          Join the Reflection Journey
+        </h3>
+        <p class="text-luna-600 dark:text-luna-300 mb-6">
+          Subscribe to receive new reflections on design, psychology, and the intersection 
+          of technology with human consciousness.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="mirror" size="lg" href="/journal">
+            <span class="flex items-center gap-2">
+              📚 <span>View All Posts</span>
+            </span>
+          </Button>
+          <Button variant="ghost" size="lg" href="#newsletter">
+            <span class="flex items-center gap-2">
+              ✉️ <span>Subscribe</span>
+            </span>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🎭 Enhanced GSAP Animations -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined') {
+      // 🎯 Journal Section Animation Timeline
+      const journalTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#journal",
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      // 📝 Header Animation
+      journalTl.fromTo("#journal-header", {
+        y: 50,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out"
+      });
+
+      // 📚 Journal Posts Staggered Animation
+      journalTl.fromTo(".journal-post", {
+        y: 60,
+        opacity: 0,
+        scale: 0.9,
+        rotationY: 10
+      }, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        rotationY: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "back.out(1.7)"
+      }, "-=0.5");
+
+      // 🌟 CTA Animation
+      journalTl.fromTo("#journal-cta", {
+        y: 40,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.3");
+
+      // 🎭 Enhanced Post Hover Interactions
+      document.querySelectorAll('.journal-post').forEach(post => {
+        post.addEventListener('mouseenter', () => {
+          gsap.to(post, {
+            y: -8,
+            scale: 1.02,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+        });
+
+        post.addEventListener('mouseleave', () => {
+          gsap.to(post, {
+            y: 0,
+            scale: 1,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+        });
+      });
+
+      // 🌟 Floating symbols animation
+      gsap.to(".animate-float", {
+        y: -15,
+        rotation: 10,
+        repeat: -1,
+        yoyo: true,
+        duration: 4,
+        ease: "sine.inOut",
+        stagger: 1
+      });
+    }
+
+    // 🔗 Share Post Function
+    window.sharePost = function(title, url) {
+      if (navigator.share) {
+        navigator.share({
+          title: title,
+          url: window.location.origin + url
+        });
+      } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(window.location.origin + url).then(() => {
+          // Show notification
+          const notification = document.createElement('div');
+          notification.textContent = 'Link copied to clipboard!';
+          notification.className = 'fixed top-4 right-4 z-50 glass-alchemy px-6 py-3 rounded-lg text-alchemy-800 dark:text-alchemy-200 font-medium';
+          document.body.appendChild(notification);
+          
+          setTimeout(() => {
+            notification.remove();
+          }, 3000);
+        });
+      }
+    };
+  });
+</script>
+
+<style>
+  /* 🎨 Enhanced Journal Post Styles */
+  .journal-post {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .journal-post::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.8s ease;
+    z-index: 1;
+  }
+
+  .journal-post:hover::before {
+    left: 100%;
+  }
+
+  /* 🌟 Featured post styling */
+  .journal-post:has([data-featured="true"]) {
+    grid-column: span 2;
+  }
+
+  /* 📱 Responsive optimizations */
+  @media (max-width: 768px) {
+    .journal-post {
+      margin-bottom: 1rem;
+    }
+    
+    .journal-post:has([data-featured="true"]) {
+      grid-column: span 1;
+    }
+  }
+
+  /* ♿ Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .journal-post,
+    .journal-post::before,
+    .animate-float,
+    .animate-pulse-glow {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* 🌙 Dark mode enhancements */
+  @media (prefers-color-scheme: dark) {
+    .journal-post {
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .journal-post::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    }
+  }
+</style>
