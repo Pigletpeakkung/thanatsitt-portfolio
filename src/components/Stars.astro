@@ -1,0 +1,265 @@
+---
+// 🌌 Enhanced Nebula Stars Component
+export interface Props {
+  intensity?: 'subtle' | 'normal' | 'cosmic';
+  starCount?: number;
+  nebulaColor?: 'purple' | 'alchemy' | 'mirror' | 'flow';
+  className?: string;
+}
+
+const {
+  intensity = 'normal',
+  starCount = 200,
+  nebulaColor = 'purple',
+  className = ''
+} = Astro.props;
+
+// 🎨 Intensity settings
+const intensitySettings = {
+  subtle: { stars: starCount * 0.5, alpha: 0.3 },
+  normal: { stars: starCount, alpha: 0.6 },
+  cosmic: { stars: starCount * 1.5, alpha: 0.8 }
+};
+
+// 🌈 Nebula color variants
+const nebulaColors = {
+  purple: { primary: '#2e1065', secondary: '#581c87', accent: '168, 85, 247' },
+  alchemy: { primary: '#78350f', secondary: '#92400e', accent: '251, 191, 36' },
+  mirror: { primary: '#581c87', secondary: '#6b21a8', accent: '168, 85, 247' },
+  flow: { primary: '#1e3a8a', secondary: '#1e40af', accent: '59, 130, 246' }
+};
+
+const currentSettings = intensitySettings[intensity];
+const currentColors = nebulaColors[nebulaColor];
+---
+
+<canvas 
+  id="nebula-canvas" 
+  class={`nebula-canvas ${className}`}
+  data-star-count={currentSettings.stars}
+  data-alpha={currentSettings.alpha}
+  data-primary={currentColors.primary}
+  data-secondary={currentColors.secondary}
+  data-accent={currentColors.accent}
+></canvas>
+
+<style define:vars={{
+  primaryColor: currentColors.primary,
+  secondaryColor: currentColors.secondary
+}}>
+  .nebula-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 30% 40%, 
+      var(--primaryColor), 
+      var(--secondaryColor) 60%,
+      #000000 90%
+    );
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .nebula-canvas.loaded {
+    opacity: 1;
+  }
+
+  /* 🌙 Dark mode adjustments */
+  @media (prefers-color-scheme: dark) {
+    .nebula-canvas {
+      opacity: 0.8;
+    }
+  }
+
+  /* 📱 Performance optimization for mobile */
+  @media (max-width: 768px) {
+    .nebula-canvas {
+      background: radial-gradient(
+        circle at 30% 40%, 
+        var(--primaryColor), 
+        #000000 70%
+      );
+    }
+  }
+
+  /* ♿ Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .nebula-canvas {
+      background: var(--primaryColor);
+    }
+  }
+</style>
+
+<script type="module">
+  class NebulaCanvas {
+    constructor() {
+      this.canvas = document.getElementById('nebula-canvas');
+      if (!this.canvas) return;
+      
+      this.ctx = this.canvas.getContext('2d');
+      this.stars = [];
+      this.animationId = null;
+      this.isVisible = true;
+      
+      // 📊 Get settings from data attributes
+      this.STAR_COUNT = parseInt(this.canvas.dataset.starCount) || 200;
+      this.ALPHA_MULTIPLIER = parseFloat(this.canvas.dataset.alpha) || 0.6;
+      this.accentColor = this.canvas.dataset.accent || '168, 85, 247';
+      
+      this.init();
+    }
+
+    init() {
+      this.resize();
+      this.initStars();
+      this.setupEventListeners();
+      this.startAnimation();
+      
+      // ✨ Fade in effect
+      setTimeout(() => {
+        this.canvas.classList.add('loaded');
+      }, 100);
+    }
+
+    resize() {
+      const dpr = window.devicePixelRatio || 1;
+      this.canvas.width = window.innerWidth * dpr;
+      this.canvas.height = window.innerHeight * dpr;
+      this.canvas.style.width = window.innerWidth + 'px';
+      this.canvas.style.height = window.innerHeight + 'px';
+      this.ctx.scale(dpr, dpr);
+    }
+
+    initStars() {
+      this.stars = [];
+      for (let i = 0; i < this.STAR_COUNT; i++) {
+        this.stars.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          radius: Math.random() * 1.5 + 0.5,
+          alpha: Math.random() * this.ALPHA_MULTIPLIER,
+          delta: (Math.random() * 0.02 + 0.005) * (Math.random() > 0.5 ? 1 : -1),
+          twinkleSpeed: Math.random() * 0.02 + 0.01,
+          baseAlpha: Math.random() * 0.5 + 0.3
+        });
+      }
+    }
+
+    drawStars() {
+      if (!this.isVisible) return;
+      
+      this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      // 🌌 Enhanced nebula gradient
+      const gradient = this.ctx.createRadialGradient(
+        window.innerWidth * 0.3, window.innerHeight * 0.4, 50,
+        window.innerWidth * 0.5, window.innerHeight * 0.5, Math.max(window.innerWidth, window.innerHeight) * 0.8
+      );
+      gradient.addColorStop(0, `rgba(${this.accentColor}, 0.15)`);
+      gradient.addColorStop(0.3, `rgba(${this.accentColor}, 0.08)`);
+      gradient.addColorStop(0.7, `rgba(${this.accentColor}, 0.03)`);
+      gradient.addColorStop(1, 'transparent');
+      
+      this.ctx.fillStyle = gradient;
+      this.ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+      // ✨ Enhanced stars with twinkling
+      for (const star of this.stars) {
+        this.ctx.beginPath();
+        this.ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        
+        // 🌟 Create star glow effect
+        const starGradient = this.ctx.createRadialGradient(
+          star.x, star.y, 0,
+          star.x, star.y, star.radius * 3
+        );
+        starGradient.addColorStop(0, `rgba(255, 255, 255, ${star.alpha})`);
+        starGradient.addColorStop(0.5, `rgba(255, 255, 255, ${star.alpha * 0.3})`);
+        starGradient.addColorStop(1, 'transparent');
+        
+        this.ctx.fillStyle = starGradient;
+        this.ctx.fill();
+
+        // 🌊 Update star properties
+        star.alpha += star.delta;
+        if (star.alpha <= star.baseAlpha * 0.3 || star.alpha >= star.baseAlpha) {
+          star.delta = -star.delta;
+        }
+
+        // 🎭 Subtle movement
+        star.x += Math.sin(Date.now() * star.twinkleSpeed * 0.001) * 0.1;
+        star.y += Math.cos(Date.now() * star.twinkleSpeed * 0.001) * 0.1;
+
+        // 🔄 Wrap around edges
+        if (star.x < 0) star.x = window.innerWidth;
+        if (star.x > window.innerWidth) star.x = 0;
+        if (star.y < 0) star.y = window.innerHeight;
+        if (star.y > window.innerHeight) star.y = 0;
+      }
+    }
+
+    startAnimation() {
+      const animate = () => {
+        this.drawStars();
+        this.animationId = requestAnimationFrame(animate);
+      };
+      animate();
+    }
+
+    setupEventListeners() {
+      // 📱 Resize handler
+      window.addEventListener('resize', () => {
+        this.resize();
+        this.initStars();
+      });
+
+      // 👁️ Visibility API for performance
+      document.addEventListener('visibilitychange', () => {
+        this.isVisible = !document.hidden;
+        if (this.isVisible && !this.animationId) {
+          this.startAnimation();
+        } else if (!this.isVisible && this.animationId) {
+          cancelAnimationFrame(this.animationId);
+          this.animationId = null;
+        }
+      });
+
+      // ♿ Respect reduced motion preference
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const handleMotionChange = (e) => {
+        if (e.matches) {
+          this.isVisible = false;
+          if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+          }
+        } else {
+          this.isVisible = true;
+          this.startAnimation();
+        }
+      };
+      
+      mediaQuery.addListener(handleMotionChange);
+      handleMotionChange(mediaQuery);
+    }
+
+    destroy() {
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId);
+      }
+      window.removeEventListener('resize', this.resize);
+    }
+  }
+
+  // 🚀 Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new NebulaCanvas());
+  } else {
+    new NebulaCanvas();
+  }
+</script>
